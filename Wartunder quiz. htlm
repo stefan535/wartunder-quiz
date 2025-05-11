@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Thunder Quiz: What Nation Do You Main?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .question {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .question label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        .question input {
+            margin-right: 10px;
+        }
+        .results {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>War Thunder: What Nation Do You Main?</h1>
+
+    <form id="quizForm">
+        <div class="question">
+            <label>1. What’s your preferred tank playstyle?</label>
+            <input type="radio" name="q1" value="A"> Heavy, armored tanks with powerful guns<br>
+            <input type="radio" name="q1" value="B"> Fast, mobile tanks that focus on flanking<br>
+            <input type="radio" name="q1" value="C"> Medium tanks that balance armor and speed<br>
+            <input type="radio" name="q1" value="D"> Light tanks for scouting and speed
+        </div>
+
+        <div class="question">
+            <label>2. Do you prefer long-range fire or close combat?</label>
+            <input type="radio" name="q2" value="A"> Long-range sniping<br>
+            <input type="radio" name="q2" value="B"> Close, intense combat<br>
+            <input type="radio" name="q2" value="C"> A mix of both<br>
+            <input type="radio" name="q2" value="D"> Depends on the situation
+        </div>
+
+        <div class="question">
+            <label>3. What’s your favorite map type?</label>
+            <input type="radio" name="q3" value="A"> Urban maps for close-range action<br>
+            <input type="radio" name="q3" value="B"> Open, long-range maps<br>
+            <input type="radio" name="q3" value="C"> Mixed maps that offer a balance<br>
+            <input type="radio" name="q3" value="D"> Forest and hilly terrain for ambushes
+        </div>
+
+        <div class="question">
+            <label>4. How do you feel about aircraft in War Thunder?</label>
+            <input type="radio" name="q4" value="A"> I love flying and bombing<br>
+            <input type="radio" name="q4" value="B"> I prefer using AA units to stop aircraft<br>
+            <input type="radio" name="q4" value="C"> I use aircraft for reconnaissance and quick attacks<br>
+            <input type="radio" name="q4" value="D"> I rarely use aircraft, focusing on ground combat
+        </div>
+
+        <div class="question">
+            <label>5. What’s your preferred artillery use?</label>
+            <input type="radio" name="q5" value="A"> Artillery is key for softening targets<br>
+            <input type="radio" name="q5" value="B"> I prefer tanks, but artillery is useful for support<br>
+            <input type="radio" name="q5" value="C"> I rarely use artillery<br>
+            <input type="radio" name="q5" value="D"> I use artillery to clear out areas before moving in
+        </div>
+
+        <div class="question">
+            <label>6. Which of these nations' tanks do you think are the most fun to play?</label>
+            <input type="radio" name="q6" value="A"> Germany<br>
+            <input type="radio" name="q6" value="B"> USA<br>
+            <input type="radio" name="q6" value="C"> USSR<br>
+            <input type="radio" name="q6" value="D"> Japan
+        </div>
+
+        <div class="question">
+            <label>7. How would you rate your teamplay strategy?</label>
+            <input type="radio" name="q7" value="A"> I focus on team objectives and tactics<br>
+            <input type="radio" name="q7" value="B"> I go solo and take risks<br>
+            <input type="radio" name="q7" value="C"> I try to balance between both<br>
+            <input type="radio" name="q7" value="D"> I prefer playing independently
+        </div>
+
+        <div class="question">
+            <label>8. What is your favorite War Thunder mode?</label>
+            <input type="radio" name="q8" value="A"> Realistic Battles<br>
+            <input type="radio" name="q8" value="B"> Arcade Battles<br>
+            <input type="radio" name="q8" value="C"> Simulator Battles<br>
+            <input type="radio" name="q8" value="D"> Custom battles with friends
+        </div>
+
+        <div class="question">
+            <label>9. Which of these playstyles best matches you?</label>
+            <input type="radio" name="q9" value="A"> Defend and hold ground<br>
+            <input type="radio" name="q9" value="B"> Rush and surprise the enemy<br>
+            <input type="radio" name="q9" value="C"> Support and assist the team<br>
+            <input type="radio" name="q9" value="D"> Scout and gather intel
+        </div>
+
+        <div class="question">
+            <label>10. What’s your favorite aspect of a tank’s design?</label>
+            <input type="radio" name="q10" value="A"> Big gun and high armor<br>
+            <input type="radio" name="q10" value="B"> Speed and agility<br>
+            <input type="radio" name="q10" value="C"> Balanced features<br>
+            <input type="radio" name="q10" value="D"> High maneuverability and stealth
+        </div>
+
+        <button type="button" onclick="calculateResults()">Submit</button>
+    </form>
+
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+    function calculateResults() {
+        const form = document.forms["quizForm"];
+        let score = { A: 0, B: 0, C: 0, D: 0 };
+
+        for (let i = 1; i <= 10; i++) {
+            let answer = form["q" + i].value;
+            if (answer) {
+                score[answer]++;
+            }
+        }
+
+        let result = "";
+        if (score.A > score.B && score.A > score.C && score.A > score.D) {
+            result = "You main **Germany** — heavy armor, firepower, and tactical precision!";
+        } else if (score.B > score.A && score.B > score.C && score.B > score.D) {
+            result = "You main **USA** — versatile, balanced, and quick in combat!";
+        } else if (score.C > score.A && score.C > score.B && score.C > score.D) {
+            result = "You main **USSR** — aggressive, heavily armored, and reliable!";
+        } else {
+            result = "You main **Japan** — fast, stealthy, and perfect for ambushes!";
+        }
+
+        document.getElementById("results").innerText = result;
+        document.getElementById("results").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
